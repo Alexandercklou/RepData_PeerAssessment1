@@ -1,4 +1,10 @@
-# Reproducible Research: Peer Assessment 1
+---
+title: "Reproducible Research: Peer Assessment 1"
+output: 
+  html_document:
+    keep_md: true
+    fig_caption: yes
+---
 
 
 ## Loading and preprocessing the data
@@ -22,22 +28,6 @@ Step 1. Calculate total steps per date
 
 ```r
 library(dplyr)
-```
-
-```
-## 
-## Attaching package: 'dplyr'
-## 
-## The following objects are masked from 'package:stats':
-## 
-##     filter, lag
-## 
-## The following objects are masked from 'package:base':
-## 
-##     intersect, setdiff, setequal, union
-```
-
-```r
 K<-aggregate(steps~date, DataSet, sum,na.rm=TRUE)
 ```
 
@@ -48,7 +38,7 @@ Step 2. Plot the Histogram
 hist(K$steps,main = "Histogram for total Steps daily", col="red",xlab="No. of Steps",ylab="Freq. of Steps")
 ```
 
-<img src="PA1_template_files/figure-html/histogram-1.png" title="" alt="" style="display: block; margin: auto;" />
+<img src="figure/histogram-1.png" title="plot of chunk histogram" alt="plot of chunk histogram" style="display: block; margin: auto;" />
 
 Step 3. Calculate the mean and median of the total number of steps taken per day
 
@@ -86,7 +76,7 @@ Code for plotting the time series plot for the daily activity
 plot(DAP$interval,DAP$steps, type="l", xlab="Interval", ylab="Avg. No. of Steps by Interval", main="Avg.No.of steps taken across all days",col='red')
 ```
 
-<img src="PA1_template_files/figure-html/timeseries-1.png" title="" alt="" style="display: block; margin: auto;" />
+<img src="figure/timeseries-1.png" title="plot of chunk timeseries" alt="plot of chunk timeseries" style="display: block; margin: auto;" />
 
 The code for finding the interval with max. steps:
 
@@ -128,7 +118,7 @@ CleanDataResult<-aggregate(steps~date, CleanData, sum)
 hist(CleanDataResult$steps,main = "Histogram for daily Steps with data cleaned", col="red",xlab="No. of Steps",ylab="Freq. of Steps")
 ```
 
-<img src="PA1_template_files/figure-html/histogram2-1.png" title="" alt="" style="display: block; margin: auto;" />
+<img src="figure/histogram2-1.png" title="plot of chunk histogram2" alt="plot of chunk histogram2" style="display: block; margin: auto;" />
 
 Code for calculating the mean of cleaned data:
 
@@ -172,4 +162,4 @@ CleanDataPeriod<-aggregate(steps~period+interval, CleanData2, mean)
 xyplot(steps~interval| period, data=CleanDataPeriod, type = "l",xlab="Interval",  ylab="Number of Steps",layout=c(1,2))
 ```
 
-<img src="PA1_template_files/figure-html/timeseries1-1.png" title="" alt="" style="display: block; margin: auto;" />
+<img src="figure/timeseries1-1.png" title="plot of chunk timeseries1" alt="plot of chunk timeseries1" style="display: block; margin: auto;" />
